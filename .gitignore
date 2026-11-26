@@ -1,0 +1,12 @@
+node_modules/
+dist/
+# מסד הנתונים והגיבויים לא עולים לגיט לעולם (יש בהם מידע על לקוחות)
+crm.db
+crm.db-*
+data.db*
+*.db
+# סודות
+.env
+.env.*
+*.log
+sqlite-export.json

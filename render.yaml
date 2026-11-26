@@ -1,0 +1,25 @@
+# Blueprint של Render: שירות חינמי. הנתונים נשמרים ב-MongoDB Atlas, ולא בדיסק של Render.
+# שימי לב: את הסודות (MONGODB_URI, APP_PASSWORD, ICS_URL) לא כותבים כאן. Render ישאל עליהם בעת יצירת ה-Blueprint.
+services:
+  - type: web
+    name: client-manager
+    runtime: node
+    plan: free              # שירות חינמי: נרדם אחרי 15 דקות בלי תנועה, והתעוררות לוקחת כדקה
+    region: frankfurt       # האזור הקרוב ביותר לישראל
+    buildCommand: npm install && npm run build
+    startCommand: npm run serve
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: ">=22.13.0 <23"   # בלי זה Render ישתמש בגרסת ברירת המחדל שלו
+      - key: TZ
+        value: Asia/Jerusalem    # בלי זה "היום" והפגישות ייחשבו לפי UTC
+      - key: SESSION_SECRET
+        generateValue: true      # Render מייצר ערך אקראי
+      - key: MONGODB_URI
+        sync: false              # כתובת החיבור ל-Atlas (מכילה סיסמה). Render ישאל בעת היצירה
+      - key: APP_PASSWORD
+        sync: false              # סיסמת הכניסה (לפחות 12 תווים)
+      - key: ICS_URL
+        sync: false              # קישור ה-ICS של Outlook. נשאר סוד בשרת בלבד

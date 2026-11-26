@@ -1,0 +1,27 @@
+{
+  "name": "client-manager",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev": "concurrently -k \"node --env-file-if-exists=.env server.js\" \"vite\"",
+    "build": "vite build",
+    "start": "vite build && node --env-file-if-exists=.env server.js",
+    "serve": "node --env-file-if-exists=.env server.js",
+    "export-sqlite": "node --disable-warning=ExperimentalWarning export-sqlite.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "mongodb": "^6.12.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.0",
+    "concurrently": "^9.0.0",
+    "vite": "^5.4.0"
+  }
+}
