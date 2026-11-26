@@ -2,7 +2,7 @@
 # שימי לב: את הסודות (MONGODB_URI, APP_PASSWORD, ICS_URL) לא כותבים כאן. Render ישאל עליהם בעת יצירת ה-Blueprint.
 services:
   - type: web
-    name: client-manager
+    name: toptask
     runtime: node
     plan: free              # שירות חינמי: נרדם אחרי 15 דקות בלי תנועה, והתעוררות לוקחת כדקה
     region: frankfurt       # האזור הקרוב ביותר לישראל
